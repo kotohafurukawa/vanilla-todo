@@ -4,19 +4,66 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Vanilla todo</title>
   </head>
   <body>
-    <h1>Hello World</h1>
-    <p>add sentence</p>
-    <section>
-      <h2>みどりの日</h2>
-      <p>みどりの日（みどりのひ）は、日本の国民の祝日の一つである。</p>
-      <p>日付は5月4日である。1989年（平成元年）から2006年（平成18年）までは4月29日であった。</p>
-      <p>国民の祝日に関する法律（祝日法、昭和23年7月20日法律第178号）第2条によれば、「自然に親しむとともにその恩恵に感謝し、豊かな心を育む」ことを趣旨とする。ゴールデンウィークを構成する休日の一つである。</p>
-      <p>git pullRequest</p>
-    </section>
-    <div id="app"></div>
+    <main>
+      <div class="l-container">
+        <h1 class="c-ttl">Vanilla todo</h1>
+        <section class="l-fixedEnd">
+          <form action="POST" class="c-addTodo">
+            <input type="text" class="c-addTodo--text">
+            <button class="c-addTodo--btn c-btn">追加</button>
+          </form>
+        </section>
+        <div class="c-todoBlock">
+          <!-- 未完了のタスク -->
+          <section>
+            <h2 class="c-ttl">未実施</h2>
+            <ul class="c-todoBlock-notDone c-todoList">
+              <li class="c-todoList--item">
+                <div class="c-todoList--left c-checkBtnWrap">
+                  <input type="checkbox" id="checkbox">
+                  <label for="checkbox" class="c-checkBtnWrap--inner"></label>
+                </div>
+                <p class="c-todoList--center">ここに入力したタスクが表示される</p>
+                <button class="c-todoList--right c-btn">削除</button>
+              </li>
+              <li class="c-todoList--item">
+                <div class="c-todoList--left c-checkBtnWrap">
+                  <input type="checkbox" id="checkbox2">
+                  <label for="checkbox2" class="c-checkBtnWrap--inner"></label>
+                </div>
+                <p class="c-todoList--center">ここに入力したタスクが表示される</p>
+                <button class="c-todoList--right c-btn">削除</button>
+              </li>
+              <li class="c-todoList--item">
+                <div class="c-todoList--left c-checkBtnWrap">
+                  <input type="checkbox" id="checkbox3">
+                  <label for="checkbox3" class="c-checkBtnWrap--inner"></label>
+                </div>
+                <p class="c-todoList--center">ここに入力したタスクが表示される</p>
+                <button class="c-todoList--right c-btn">削除</button>
+              </li>
+            </ul>
+          </section>
+          <!-- 完了済みのタスク -->
+          <section>
+            <h2 class="c-ttl">実施済み</h2>
+            <ul class="c-todoBlock-Done c-todoList">
+              <li class="c-todoList--item">
+                <div class="c-todoList--left c-checkBtnWrap">
+                  <input type="checkbox" id="checkbox4">
+                  <label for="checkbox4" class="c-checkBtnWrap--inner"></label>
+                </div>
+                <p class="c-todoList--center">ここに終了したタスクが表示される</p>
+                <button class="c-todoList--right c-btn">削除</button>
+              </li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </main>
     <script type="module" src="/main.js"></script>
   </body>
 </html>
