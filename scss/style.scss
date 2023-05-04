@@ -1,0 +1,122 @@
+// color variables
+$main-color: #fbfffc;
+$second-color:#430fd0;
+
+html {
+  background: $main-color;
+  color: $second-color;
+}
+// ==========================
+// layout block
+// ==========================
+.l-container {
+  position: relative;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+.l-fixedEnd {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  max-width: 1120px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 5%;
+  padding-bottom: 1rem;
+  opacity: 0.9;
+}
+
+// ==========================
+// common BLock
+// ==========================
+// title
+.c-ttl {
+  color: $second-color;
+  text-align: center;
+}
+
+.c-addTodo {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  & > .c-addTodo--text {
+    flex: 1 1 100%;
+  }
+  & > .c-addTodo--btn {
+    flex: 0 0 auto;
+  }
+}
+
+// todoList
+.c-todoList {
+  padding: 0;
+  & > .c-todoList--item + .c-todoList--item {
+    margin-top: 20px;
+  }
+  .c-todoList--item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    list-style: none;
+    & > .c-todoList--left,
+    & > .c-todoList--right {
+      flex: 0 0 auto;
+    }
+    & > .c-todoList--center {
+      flex: 1 1 auto;
+    }
+  }
+}
+
+// btn
+.c-btn {
+  max-width: 150px;
+  padding: 10px 20px;
+  border: 1px solid $second-color;
+  border-radius: 16px;
+  font-size: 1rem;
+  background: $second-color;
+  color: $main-color;
+  appearance: none;
+  cursor: pointer;
+  &:hover,
+  &:focus {
+    transition: .5s;
+    background: $main-color;
+    color: $second-color;
+  }
+}
+
+.c-checkBtnWrap {
+  & > input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+  }
+  & > .c-checkBtnWrap--inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 2px solid $second-color;
+    border-radius: 5px;
+    background: $main-color;
+    color: $second-color;
+    cursor: pointer;
+  }
+  & > .c-checkBtnWrap--inner::after {
+    display: none;
+    content: "";
+    width: 0.5rem;
+    height: 0.8rem;
+    border-right: 2px solid $second-color;
+    border-bottom: 2px solid $second-color;
+    transform: rotate(45deg);
+  }
+  & > input[type="checkbox"]:checked + .c-checkBtnWrap--inner::after {
+    display: block;
+  }
+}
