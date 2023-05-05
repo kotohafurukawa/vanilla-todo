@@ -2,55 +2,30 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <title>Vanilla todo</title>
+    <link rel="stylesheet" href="./scss/sanitize.scss">
+    <link rel="stylesheet" href="./scss/style.scss">
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla todo</title>
   </head>
   <body>
     <main>
       <div class="l-container">
         <h1 class="c-ttl">Vanilla todo</h1>
         <section class="l-fixedEnd">
-          <form action="POST" class="c-addTodo">
+          <form class="c-addTodo" id="addTodo" >
             <input type="text" class="c-addTodo--text">
-            <button class="c-addTodo--btn c-btn">追加</button>
+            <button class="c-addTodo--btn c-btn" type="button">追加</button>
           </form>
         </section>
         <div class="c-todoBlock">
-          <!-- 未完了のタスク -->
           <section>
             <h2 class="c-ttl">未実施</h2>
-            <ul class="c-todoBlock-notDone c-todoList">
-              <li class="c-todoList--item">
-                <div class="c-todoList--left c-checkBtnWrap">
-                  <input type="checkbox" id="checkbox">
-                  <label for="checkbox" class="c-checkBtnWrap--inner"></label>
-                </div>
-                <p class="c-todoList--center">ここに入力したタスクが表示される</p>
-                <button class="c-todoList--right c-btn">削除</button>
-              </li>
-              <li class="c-todoList--item">
-                <div class="c-todoList--left c-checkBtnWrap">
-                  <input type="checkbox" id="checkbox2">
-                  <label for="checkbox2" class="c-checkBtnWrap--inner"></label>
-                </div>
-                <p class="c-todoList--center">ここに入力したタスクが表示される</p>
-                <button class="c-todoList--right c-btn">削除</button>
-              </li>
-              <li class="c-todoList--item">
-                <div class="c-todoList--left c-checkBtnWrap">
-                  <input type="checkbox" id="checkbox3">
-                  <label for="checkbox3" class="c-checkBtnWrap--inner"></label>
-                </div>
-                <p class="c-todoList--center">ここに入力したタスクが表示される</p>
-                <button class="c-todoList--right c-btn">削除</button>
-              </li>
-            </ul>
+            <ul class="c-todoList" id="todoNotDone"></ul>
           </section>
-          <!-- 完了済みのタスク -->
           <section>
             <h2 class="c-ttl">実施済み</h2>
-            <ul class="c-todoBlock-Done c-todoList">
+            <ul class="c-todoList" id="todoDone">
               <li class="c-todoList--item">
                 <div class="c-todoList--left c-checkBtnWrap">
                   <input type="checkbox" id="checkbox4">
