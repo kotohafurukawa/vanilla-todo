@@ -94,6 +94,7 @@ html {
   & > input[type="checkbox"] {
     position: absolute;
     opacity: 0;
+    top: 0;
   }
   & > .c-checkBtnWrap--inner {
     display: flex;
