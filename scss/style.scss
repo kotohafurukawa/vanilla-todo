@@ -26,6 +26,7 @@ html {
   padding: 0 5%;
   padding-bottom: 1rem;
   opacity: 0.9;
+  z-index: 1;
 }
 
 // ==========================
@@ -90,15 +91,15 @@ html {
   }
 }
 
-.c-checkBtnWrap {
+.c-checkBtn {
+  position: relative;
   & > input[type="checkbox"] {
     position: absolute;
     opacity: 0;
+    top: -1000px;
   }
-  & > .c-checkBtnWrap--inner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  & span {
+    display: block;
     width: 1.5rem;
     height: 1.5rem;
     border: 2px solid $second-color;
@@ -107,8 +108,14 @@ html {
     color: $second-color;
     cursor: pointer;
   }
-  & > .c-checkBtnWrap--inner::after {
+  & span::after {
     display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
     content: "";
     width: 0.5rem;
     height: 0.8rem;
@@ -116,7 +123,7 @@ html {
     border-bottom: 2px solid $second-color;
     transform: rotate(45deg);
   }
-  & > input[type="checkbox"]:checked + .c-checkBtnWrap--inner::after {
+  & > input[type="checkbox"]:checked + span::after {
     display: block;
   }
 }

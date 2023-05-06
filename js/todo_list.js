@@ -1,45 +1,81 @@
-// 未完了のtodo配列
-const todoList = [];
-// 実施済みのtodo配列
-const doneTodoList = [];
+// todo連想配列childBtnElement
+const unCompletedTodos = {};
+// 実施済のtodo連想配列
+const doneTodos = {};
 // 追加のform要素を取得
-const addTodo = document.querySelector('#addTodo');
-// 未実施todoのDOMツリーを取得
-const todoNotDone = document.querySelector('#todoNotDone');
+const addTodoBtn = document.querySelector('#addTodo').lastElementChild;
+// todoのDOMツリーを取得
+const todo = document.querySelector('#todo');
+// 実施済みのDOMツリーを取得
+const doneTodo = document.querySelector('#doneTodo');
+//ユーザーが追加ボタンを押した回数。押下時にカウンターを増加させて、IDを一意に割り振る。
+let addCounter = 0;
 
-// 配列の最後尾要素を表示する関数
-function displayArrayLastChild (ary) {
-  // 最後尾のindexを取得
-  let lastIndex = ary.length;
-  // 最後尾の要素を取得
-  let lastElement = ary[lastIndex - 1];
-  // 表示する内容
-  let displayContent = `<li class="c-todoList--item">
-    <div class="c-todoList--left c-checkBtnWrap">
-      <input type="checkbox" id="js-checkbox${lastIndex}">
-      <label for="js-checkbox${lastIndex}" class="c-checkBtnWrap--inner"></label>
-    </div>
-    <p class="c-todoList--center">${lastElement}</p>
-    <button class="c-todoList--right c-btn">削除</button>
-  </li>`;
-
-  return todoNotDone.insertAdjacentHTML("afterbegin", displayContent);
-}
-
+// ユーザーの入力値を配列に追加
 function userInputEvent () {
-  // ユーザーが入力した値を取得
-  let userInput = addTodo.firstElementChild.value;
-
+  // ユーザーの入力値を取得
+  let userInput = addTodo.querySelector('input[type="text"]').value;
   // 入力値の空文字判定する
   if(userInput === '') {
     alert('入力して下さい');
   }else {
-    // todoListの先頭に追加
-    todoList.push(userInput);
-    // todoListに新たに追加された先頭要素のみ表示させる。
-    displayArrayLastChild(todoList);
+    unCompletedTodos[`js-todo${addCounter}`] = userInput;
+    // 新たに追加された要素を表示
+    displayAddItem(unCompletedTodos, `js-todo${addCounter}`, todo);
+    addCounter++;
   }
 }
+// 連想配列に追加されたtodoを先頭に表示させる。
+function displayAddItem (obj, property, domTree) {
+  // 追加するDOMツリーを生成
+  // 追加するノードの一番上の親要素
+  let parentElement = document.createElement('li');
+  parentElement.className = 'c-todoList--item';
 
+  // チェックボタンを生成
+  let childCheckElement = document.createElement('label');
+  childCheckElement.className = 'c-todoList--left c-checkBtn';
+  let input = document.createElement('input');
+  input.type = 'checkbox';
+  input.id = property;
+  let span = document.createElement('span');
+  childCheckElement.appendChild(input);
+  childCheckElement.appendChild(span);
+
+  // テキストを生成
+  let childTxtElement = document.createElement('p');
+  childTxtElement.className ='c-todoList--center';
+  childTxtElement.textContent = obj[property];
+
+  // 削除ボタンを生成
+  let childBtnElement = document.createElement('button');
+  childBtnElement.className = 'c-todoList--right c-btn';
+  childBtnElement.textContent = '削除';
+
+  // 親要素に追加していく
+  parentElement.appendChild(childCheckElement);
+  parentElement.appendChild(childTxtElement);
+  parentElement.appendChild(childBtnElement);
+
+  // 未実施の先頭に追加
+  domTree.prepend(parentElement);
+}
+// チェックボタン押下時に、未実施→実施済みにデータの移動あるいはその逆。
+// 追加された連想配列は、DisplayAddItem関数を実行する。
+function handleTodoChange (addObject, removeObject, addDom, removeDom, targetProperty) {
+  addObject[targetProperty.id] = removeObject[targetProperty.id];
+  let targetNode = targetProperty.closest('.c-todoList--item');
+  removeDom.removeChild(targetNode);
+  delete removeObject[targetProperty.id];
+  displayAddItem(addObject, targetProperty.id, addDom);
+}
 // todoを新規追加した際、発生するイベント。
-addTodo.lastElementChild.addEventListener('click', userInputEvent);
+addTodoBtn.addEventListener('click', userInputEvent);
+// 未実施のtodoにチェックをつけた際、発火するイベント
+todo.addEventListener('change', function(event) {
+  handleTodoChange(doneTodos, unCompletedTodos, doneTodo, todo, event.target);
+});
+// 実施済みのtodoにチェックをつけた際、発火するイベント
+doneTodo.addEventListener('change', function(event) {
+  handleTodoChange(unCompletedTodos, doneTodos, todo, doneTodo, event.target);
+});
