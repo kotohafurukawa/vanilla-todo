@@ -13,7 +13,7 @@
       <div class="l-container">
         <h1 class="c-ttl">Vanilla todo</h1>
         <section class="l-fixedEnd">
-          <form class="c-addTodo" id="addTodo" >
+          <form class="c-addTodo" id="addTodo" onsubmit="return false">
             <input type="text" class="c-addTodo--text">
             <button class="c-addTodo--btn c-btn" type="button">追加</button>
           </form>
@@ -21,20 +21,11 @@
         <div class="c-todoBlock">
           <section>
             <h2 class="c-ttl">未実施</h2>
-            <ul class="c-todoList" id="todoNotDone"></ul>
+            <ul class="c-todoList" id="todo"></ul>
           </section>
           <section>
             <h2 class="c-ttl">実施済み</h2>
-            <ul class="c-todoList" id="todoDone">
-              <li class="c-todoList--item">
-                <div class="c-todoList--left c-checkBtnWrap">
-                  <input type="checkbox" id="checkbox4">
-                  <label for="checkbox4" class="c-checkBtnWrap--inner"></label>
-                </div>
-                <p class="c-todoList--center">ここに終了したタスクが表示される</p>
-                <button class="c-todoList--right c-btn">削除</button>
-              </li>
-            </ul>
+            <ul class="c-todoList" id="doneTodo"></ul>
           </section>
         </div>
       </div>
