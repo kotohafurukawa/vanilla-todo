@@ -1,5 +1,5 @@
 // todo連想配列
-const unCompletedTodos = {};
+const todoList = {};
 // todoのNodeを取得
 const unCompletedTodoNode = document.querySelector('#unCompletedTodo');
 // 実施済みのNodeを取得
@@ -20,11 +20,11 @@ function userInputEvent () {
     alert('入力して下さい');
   }else {
     // valueを未実施object(unCompetedTodos)に渡す。
-    unCompletedTodos[`js-todo${addCounter}`] = inputTxt.value;
+    todoList[`js-todo${addCounter}`] = inputTxt.value;
     // valueに空文字を渡す。
     inputTxt.value = '';
     // 新たに追加された要素を表示
-    displayAddItem(unCompletedTodos, `js-todo${addCounter}`, unCompletedTodoNode);
+    displayAddItem(todoList, `js-todo${addCounter}`, unCompletedTodoNode);
     // カウンターをインクリメントする。
     addCounter++;
   }
