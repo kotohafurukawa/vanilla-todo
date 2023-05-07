@@ -12,22 +12,21 @@
     <main>
       <div class="l-container">
         <h1 class="c-ttl">Vanilla todo</h1>
-        <section class="l-fixedEnd">
-          <form class="c-addTodo" id="addTodo" onsubmit="return false">
-            <input type="text" class="c-addTodo--text">
-            <button class="c-addTodo--btn c-btn" type="button">追加</button>
-          </form>
+        <section>
+          <h2 class="c-ttl">todoを入力</h2>
+          <div class="c-addBlock">
+            <input type="text" class="c-addBlock--text" id="inputTxt">
+            <button class="c-addBlock--btn c-btn" type="button" id="addBtn">追加</button>
+          </div>
         </section>
-        <div class="c-todoBlock">
-          <section>
-            <h2 class="c-ttl">未実施</h2>
-            <ul class="c-todoList" id="todo"></ul>
-          </section>
-          <section>
-            <h2 class="c-ttl">実施済み</h2>
-            <ul class="c-todoList" id="doneTodo"></ul>
-          </section>
-        </div>
+        <section>
+          <h2 class="c-ttl">未実施</h2>
+          <ul class="c-todoList" id="unCompletedTodo"></ul>
+        </section>
+        <section>
+          <h2 class="c-ttl">実施済み</h2>
+          <ul class="c-todoList c-todoList--done" id="doneTodo"></ul>
+        </section>
       </div>
     </main>
     <script type="module" src="/main.js"></script>
