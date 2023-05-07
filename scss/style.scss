@@ -14,21 +14,14 @@ html {
   max-width: 1120px;
   margin: 0 auto;
   padding: 0 5%;
+  & > section {
+    border-radius: 10px;
+    background: #fbfffc;
+    box-shadow:  20px 20px 60px #d5d9d6,-20px -20px 60px #ffffff;
+    margin-bottom: 50px;
+    padding: 20px 50px;
+  }
 }
-.l-fixedEnd {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  max-width: 1120px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 5%;
-  padding-bottom: 1rem;
-  opacity: 0.9;
-  z-index: 1;
-}
-
 // ==========================
 // common BLock
 // ==========================
@@ -38,14 +31,14 @@ html {
   text-align: center;
 }
 
-.c-addTodo {
+.c-addBlock {
   display: flex;
   justify-content: space-between;
   gap: 20px;
-  & > .c-addTodo--text {
+  & > .c-addBlock--text {
     flex: 1 1 100%;
   }
-  & > .c-addTodo--btn {
+  & > .c-addBlock--btn {
     flex: 0 0 auto;
   }
 }
@@ -69,6 +62,11 @@ html {
     & > .c-todoList--center {
       flex: 1 1 auto;
     }
+  }
+}
+.c-todoList--done {
+  & .c-checkBtn > span::after {
+    display: block;
   }
 }
 
